@@ -2,20 +2,10 @@
 
 namespace JeanKassio\Deluge\DelugeFunctions;
 
-/**
- * Class BaseType
- * @package NEOSoftWare\Deluge\Type
- */
 abstract class BaseType
 {
-    /** @var BaseType[]|null */
     protected static $types;
 
-    /**
-     * @param array $data
-     *
-     * @return static
-     */
     public static function fromData(array $data)
     {
         $r = 1;
