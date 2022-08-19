@@ -14,7 +14,7 @@
 		"JeanKassio\\Deluge\\" :  "src/"
 	  }
 	},
-	"minimum-stability": "stable",
+	"minimum-stability": "master-dev",
 	"require":{
 		"php": ">=7.0"
 	}
