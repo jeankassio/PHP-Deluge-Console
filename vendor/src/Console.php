@@ -1,5 +1,5 @@
 <?php
-namespace Deluge;
+namespace JeanKassio\Deluge;
 
 use DelugeFunctions\BasicFunctions;
 use DelugeException\ExceptionConsole;

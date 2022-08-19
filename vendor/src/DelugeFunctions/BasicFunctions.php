@@ -1,5 +1,5 @@
 <?php
-namespace Deluge\DelugeFunctions;
+namespace JeanKassio\Deluge\DelugeFunctions;
 
 use Deluge\Console;
 

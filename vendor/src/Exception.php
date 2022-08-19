@@ -1,6 +1,6 @@
 <?php
 
-namespace DelugeException;
+namespace JeanKassio\Deluge\DelugeException;
 
 class ExceptionConsole extends \Exception{
 }

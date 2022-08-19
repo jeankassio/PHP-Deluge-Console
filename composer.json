@@ -1,0 +1,20 @@
+{
+    "name": "jeankassio/php-deluge-console",
+    "description": "Connection to Deluge client/server console via PHP, with pre-established functions and open console to send commands.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jean Kássio",
+            "email": "jeankassiocheib@gmail.com"
+        }
+    ],
+	"autoload" : {
+	  "psr-4" : {
+		"JeanKassio\\Deluge\\" :  "src/"
+	  }
+	},
+	"require":{
+		"php": ">=7.0"
+	}
+}
