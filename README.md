@@ -23,44 +23,129 @@ use JeanKassio\Deluge\DelugeFunctions\BasicFunctions;
  */
  
  $config = array(
-		'console_command' => 'deluge-console', 		//optional, default is 'deluge-console'
-		'host' => 'localhost',  					//optional, default is 'localhost'
-		'port' => '58846',  						//optional, default is '58846'
-		'user' => 'username',
-		'pass' => 'password',
-	);
+	'console_command' => 'deluge-console', 	//optional, default is 'deluge-console'
+	'host' => 'localhost',  		//optional, default is 'localhost'
+	'port' => '58846',  			//optional, default is '58846'
+	'user' => 'username',
+	'pass' => 'password',
+);
+
+/*
+Instancing a new Console
+*/
+
+$console = new Console($config);
+
+/*
+Here you call the method you want.
+Let's in this example add a new torrent.
+*/
+
+/*
+The first parameter is the Path where the file we are going to download will be saved.
+The second parameter is the Magnet Link or the location where the .torrent file is stored.
+*/
   
-  /*
-  Instancing a new Console
-  */
-  
-  $console = new Console($config);
-  
-  /*
-  Here you call the method you want.
-  Let's in this example add a new torrent.
-  */
-  
-  /*
-  The first parameter is the Path where the file we are going to download will be saved.
-  The second parameter is the Magnet Link or the location where the .torrent file is stored.
-  */
-  
-  $id = 0; //Get id value from something
-  $id++;
-  $name = "file.torrent";
-	$c_torrent = dirname(__FILE__, 2) . "/content/torrent/$name";
-	$path = dirname(__FILE__, 2) . "/content/download/$id/";
+$id = 0; //Get id value from something
+$id++;
+$name = "file.torrent";
+$c_torrent = dirname(__FILE__, 2) . "/content/torrent/$name";
+$path = dirname(__FILE__, 2) . "/content/download/$id/";
 		
-	if (!file_exists($path)) {
-	  mkdir($path, 0777, true); //Here I am creating a directory to save my file
-	  chmod($path, 0777);       //Here I am setting the permissions to 777, this is the permission level that Deluge needs so that the download can start normally.
-	}
+if (!file_exists($path)) {
+  mkdir($path, 0777, true); //Here I am creating a directory to save my file
+  chmod($path, 0777);       //Here I am setting the permissions to 777, this is the permission level that Deluge needs so that the download can start normally.
+}
   
-  /*
-  
-  */
-  
-  $torrents = (new BasicFunctions($console))->addtorrent($path, $c_torrent);
+/*
+Here I am finally submitting the information and adding the torrent to Deluge
+*/
+
+$response = (new BasicFunctions($console))->addtorrent($path, $c_torrent);
  
+```
+
+# Other existing methods
+
+Get torrent list
+
+```php
+
+require dirname(__FILE__) . '/vendor/autoload.php';
+
+use JeanKassio\Deluge\Console;
+use JeanKassio\Deluge\DelugeFunctions\BasicFunctions;
+
+$config = array(
+	'console_command' => 'deluge-console', 	//optional, default is 'deluge-console'
+	'host' => 'localhost',  		//optional, default is 'localhost'
+	'port' => '58846',  			//optional, default is '58846'
+	'user' => 'username',
+	'pass' => 'password',
+);
+
+$console = new Console($config);
+
+$torrents = (new BasicFunctions($console))->torrentList();
+
+foreach($torrents as $torrent){
+
+	var_dump($torrent);			
+
+}
+
+```
+
+Get a single Torrent
+
+```php
+
+require dirname(__FILE__) . '/vendor/autoload.php';
+
+use JeanKassio\Deluge\Console;
+use JeanKassio\Deluge\DelugeFunctions\BasicFunctions;
+
+$config = array(
+	'console_command' => 'deluge-console', 	//optional, default is 'deluge-console'
+	'host' => 'localhost',  		//optional, default is 'localhost'
+	'port' => '58846',  			//optional, default is '58846'
+	'user' => 'username',
+	'pass' => 'password',
+);
+
+$console = new Console($config);
+
+$torrent_id = "torrent_id";
+
+$torrent = (new BasicFunctions($console))->torrent($torrent_id);
+
+var_dump($torrent);
+
+```
+
+Console, to make your own calls
+
+```php
+
+require dirname(__FILE__) . '/vendor/autoload.php';
+
+use JeanKassio\Deluge\Console;
+use JeanKassio\Deluge\DelugeFunctions\BasicFunctions;
+
+$config = array(
+	'console_command' => 'deluge-console', 	//optional, default is 'deluge-console'
+	'host' => 'localhost',  		//optional, default is 'localhost'
+	'port' => '58846',  			//optional, default is '58846'
+	'user' => 'username',
+	'pass' => 'password',
+);
+
+$console = new Console($config);
+
+$command = "status";
+
+$response = (new BasicFunctions($console))->console($command);
+
+var_dump($response);
+
 ```
