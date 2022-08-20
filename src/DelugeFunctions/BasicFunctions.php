@@ -14,8 +14,14 @@ class BasicFunctions{
     }
 	
 	
-	public function addtorrent(string $path, $torrent){
-        $content = $this->delugeConsole->command('add -p ' . $path . $torrent);
+	public function console(string $command){
+        $content = $this->delugeConsole->command($command);
+
+        return $content;
+    }
+	
+	public function addtorrent(string $path, string $torrent){
+        $content = $this->delugeConsole->command("add -p '" . $path . "' " . $torrent);
 
         return Torrent::fromData($this->parseTorrent($content));
     }
