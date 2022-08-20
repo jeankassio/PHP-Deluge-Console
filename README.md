@@ -4,6 +4,7 @@ Connection to Deluge client/server console via PHP, with pre-established functio
 [![Total Downloads](https://poser.pugx.org/jeankassio/php-deluge-console/downloads)](https://packagist.org/packages/jeankassio/php-deluge-console)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+Php package from [deluge console](https://dev.deluge-torrent.org/wiki/UserGuide/ThinClient#Console)
 
 Installation:
 ```bash
@@ -149,3 +150,7 @@ $response = (new BasicFunctions($console))->console($command);
 var_dump($response);
 
 ```
+
+
+
+Package modification of [deluge-php](https://github.com/NEOSoftWare/deluge-php)
