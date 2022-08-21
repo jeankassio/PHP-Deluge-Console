@@ -23,7 +23,7 @@ class BasicFunctions{
 	public function addtorrent(string $path, string $torrent){
         $content = $this->delugeConsole->command("add -p '" . $path . "' " . $torrent);
 
-        return Torrent::fromData($content);
+        return $content;
     }
 	
 	public function torrentList(){
