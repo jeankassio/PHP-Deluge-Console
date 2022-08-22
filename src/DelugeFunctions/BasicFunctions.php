@@ -52,7 +52,7 @@ class BasicFunctions{
         return $row[1] ?? null;
     }
 	
-    protected function parseTorrent($content){
+    public static function parseTorrent($content){
         $torrentData = [];
 
         $torrentData['name'] = $this->parseLine('Name: ([^\n]+)', $content);
