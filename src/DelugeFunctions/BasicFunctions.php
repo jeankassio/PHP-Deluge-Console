@@ -26,6 +26,17 @@ class BasicFunctions{
         return $content;
     }
 	
+	public function parseInfo(string $content){
+        $torrents = [];
+        $lines = explode("\n \n", $content);
+
+        foreach ($lines ?? [] as $lineTorrent){
+            $torrents[] = Torrent::fromData($this->parseTorrent($lineTorrent));
+        }
+
+        return $torrents;
+    }
+	
 	public function torrentList(){
         $content = $this->delugeConsole->command('info -v');
         $torrents = [];
@@ -37,7 +48,7 @@ class BasicFunctions{
 
         return $torrents;
     }
-
+	
     public function torrent(string $torrentId){
         $content = $this->delugeConsole->command('info -v ' . $torrentId);
 
