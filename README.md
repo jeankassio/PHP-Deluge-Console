@@ -116,7 +116,7 @@ $config = array(
 
 $console = new Console($config);
 
-$torrent_id = "torrent_id";
+$torrent_id = "9c62d55c744642ef3f6f6daa3448055fb490a12e";
 
 $torrent = (new BasicFunctions($console))->torrent($torrent_id);
 
@@ -151,6 +151,56 @@ var_dump($response);
 
 ```
 
+# New Methods
+All these functions always return null
+
+```php
+
+require dirname(__FILE__) . '/vendor/autoload.php';
+
+use JeanKassio\Deluge\Console;
+use JeanKassio\Deluge\DelugeFunctions\BasicFunctions;
+
+$config = array(
+	'console_command' => 'deluge-console', 	//optional, default is 'deluge-console'
+	'host' => 'localhost',  		//optional, default is 'localhost'
+	'port' => '58846',  			//optional, default is '58846'
+	'user' => 'username',
+	'pass' => 'password',
+);
+
+$console = new Console($config);
+
+$bFunction = new BasicFunctions($console);
+
+
+$bFunction->pause(true); //Pause all torrents
+
+$bFunction->pause(false, array("9c62d55c744642ef3f6f6daa3448055fb490a12e","57a30a85b4a8375fc7a05a05c5f47e28b34da087")); //Pause only torrents listed with your ID
+
+
+
+$bFunction->recheck(true); //Recheck on all torrents
+
+$bFunction->recheck(false, array("9c62d55c744642ef3f6f6daa3448055fb490a12e","57a30a85b4a8375fc7a05a05c5f47e28b34da087")); //Recheck only on torrents listed with your ID
+
+
+
+$bFunction->resume(true); //Resume all torrents
+
+$bFunction->resume(false, array("9c62d55c744642ef3f6f6daa3448055fb490a12e","57a30a85b4a8375fc7a05a05c5f47e28b34da087")); //Resume only torrents listed with your ID
+
+
+
+$bFunction->remove(array("9c62d55c744642ef3f6f6daa3448055fb490a12e","57a30a85b4a8375fc7a05a05c5f47e28b34da087")); //Delete the torrent without deleting the files
+
+$bFunction->remove(array("9c62d55c744642ef3f6f6daa3448055fb490a12e","57a30a85b4a8375fc7a05a05c5f47e28b34da087"), true); //Delete the torrent and the files
+
+
+
+
+
+```
 
 
 Package modification of [deluge-php](https://github.com/NEOSoftWare/deluge-php)
