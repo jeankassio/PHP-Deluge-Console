@@ -34,8 +34,6 @@ class Console{
 
 		if(strpos($line, 'Failed to connect') !== false){
 			throw new ExceptionConsole ($line);
-		}elseif($line == NULL  OR $line == ""){
-			throw new ExceptionConsole ("ERROR OR NO TORRENTS IN THE LIST");
 		}
 
 		return $line;

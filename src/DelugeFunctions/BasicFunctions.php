@@ -20,6 +20,30 @@ class BasicFunctions{
         return $content;
     }
 	
+	public function resume(bool $all, $torrents = array()){
+        $content = $this->delugeConsole->command("resume ". ($all ? "[*]" : preg_replace('/[\["]|[\]]/i', "", str_replace(",", " ", json_encode($torrents)))));
+
+        return $content;
+    }
+	
+	public function recheck(bool $all, $torrents = array()){
+        $content = $this->delugeConsole->command("recheck ". ($all ? "*" : preg_replace('/[\["]|[\]]/i', "", str_replace(",", " ", json_encode($torrents)))));
+
+        return $content;
+    }
+	
+	public function pause(bool $all, $torrents = array()){
+        $content = $this->delugeConsole->command("pause ". ($all ? "[*]" : preg_replace('/[\["]|[\]]/i', "", str_replace(",", " ", json_encode($torrents)))));
+
+        return $content;
+    }
+	
+	public function remove($torrents, bool $data = NULL){
+        $content = $this->delugeConsole->command("rm ". preg_replace('/[\["]|[\]]/i', "", str_replace(",", " ", json_encode($torrents))) . " " . ($data ? "--remove_data" : ""));
+
+        return $content;
+    }
+	
 	public function addtorrent(string $path, string $torrent){
         $content = $this->delugeConsole->command("add -p '" . $path . "' " . $torrent);
 
